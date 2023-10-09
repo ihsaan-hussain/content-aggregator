@@ -3,6 +3,10 @@
 {% block content %}
 
     <br/><br/>
-    <h1>Ihsaan!</h1>
+
+    {% for tag in tags %}
+        {{ tag }}
+        <br/>
+    {% endfor %}
 
 {% endblock %}
