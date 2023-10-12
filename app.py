@@ -6,11 +6,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    url = "https://news.google.com/home?hl=en-GB&gl=GB&ceid=GB:en"
+    url = "https://www.youtube.com/feed/trending"
 
     get_url = requests.get(url)
     get_text = get_url.text
 
     soup = BeautifulSoup(get_text, "html.parser")
+    tags = soup.find_all("ytd-app")
 
-    return render_template('home.html',  tags=tags, soup=soup)
+    return render_template('home.html', tags=tags)
