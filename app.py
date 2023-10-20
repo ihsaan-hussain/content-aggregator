@@ -6,12 +6,22 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    url = "https://www.youtube.com/feed/trending"
+    return render_template('home.html')
 
-    get_url = requests.get(url)
-    get_text = get_url.text
+@app.route('/world')
+def world():
+    # world news page
 
-    soup = BeautifulSoup(get_text, "html.parser")
-    tags = soup.find_all("ytd-app")
+    headlines = []
 
-    return render_template('home.html', tags=tags)
+    url = "https://www.bbc.co.uk/news/world"
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.content, "lxml")
+    
+    h3 = soup.find_all("h3")
+
+    for x in h3:
+        headlines.append(x.text)
+
+    return render_template('world.html', headlines=headlines)

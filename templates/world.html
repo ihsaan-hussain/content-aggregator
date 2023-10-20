@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br/><br/>
+    <h1>world News</h1>
+    <br/><br/>
+
+    {% for tag in headlines %}
+        {{ tag }}
+        <br/><br/>
+    {% endfor %}
+
+{% endblock %}
